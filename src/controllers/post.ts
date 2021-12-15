@@ -1,0 +1,117 @@
+import {
+    RouterContext,
+    RouteParams,
+    // uuid,
+    // yup,
+} from "../../deps.ts";
+// import { IPost } from "../types.ts";
+// import { Post } from "../models/post.ts";
+//
+// const createPostSchema = yup.object({
+//   title: yup.string().required(),
+//   body: yup.string().required()
+// });
+//
+// export async function getPosts(ctx: RouterContext) {
+//   try {
+//     const { response } = ctx;
+//     const posts = await Post.findAll();
+//     response.status = 201;
+//     response.body = {
+//       data: posts
+//     };
+//   } catch (error) {
+//     throw error;
+//   }
+// }
+//
+// export async function getPost(ctx: RouterContext) {
+//   try {
+//     const { response, params } = ctx;
+//     const post = await Post.findOneById(params.id!);
+//     response.status = 201;
+//     response.body = {
+//       data: post
+//     };
+//   } catch (error) {
+//     throw error;
+//   }
+// }
+//
+// export async function createPost(ctx: RouterContext) {
+//   try {
+//     const {
+//       request,
+//       response,
+//       state: { user }
+//     } = ctx;
+//     if (!user) {
+//       response.status = 401;
+//       response.body = {
+//         message: "Unauthorized"
+//       };
+//       return;
+//     }
+//     const body = await request.body();
+//     const data: Omit<IPost, "id" | "user"> = body.value;
+//     await createPostSchema.validate(data);
+//     const postId = uuid.generate();
+//
+//     const post = await Post.insert({ ...data, id: postId, userId: user.id });
+//     response.status = 201;
+//     response.body = {
+//       message: "post created",
+//       data: post
+//     };
+//   } catch (error) {
+//     throw error;
+//   }
+// }
+//
+// export async function deletePost(ctx: RouterContext) {
+//   try {
+//     const {
+//       params,
+//       response,
+//       state: { user }
+//     } = ctx;
+//     if (!user) {
+//       response.status = 401;
+//       response.body = {
+//         message: "Unauthorized"
+//       };
+//       return;
+//     }
+//
+//     const post = await Post.findOneById(params.id || "");
+//     if (post.user?.id !== user.id) {
+//       response.status = 403;
+//       response.body = {
+//         message: "you don't have access to delete this post"
+//       };
+//       return;
+//     }
+//     await Post.delete(post.id || "");
+//     response.status = 202;
+//     response.body = {
+//       message: "post deleted"
+//     };
+//   } catch (error) {
+//     throw error;
+//   }
+// }
+
+export async function getPosts(ctx: RouterContext<string, RouteParams<string>, Record<string, any>>) {
+  try {
+    const { response } = ctx;
+    response.status = 201;
+    response.body = {
+      data: {
+          id: 1,
+          content: 'text',
+      },
+    };
+  } catch (error) {
+    throw error;
+  }
+}
