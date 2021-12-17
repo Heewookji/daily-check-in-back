@@ -1,10 +1,10 @@
-// import { ConnectionOptions } from "../deps.ts";
-//
-// export interface Config {
-//   dbConfig: ConnectionOptions;
-//   jwtSecret: string;
-// }
-//
+import { ClientConfig } from "../deps.ts";
+
+export interface Config {
+  dbConfig: ClientConfig;
+  jwtSecret: string;
+}
+
 // export interface IUser {
 //   id: string;
 //   password: string;
