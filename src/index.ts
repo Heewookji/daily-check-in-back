@@ -1,6 +1,6 @@
 import {
-  // bgGreen,
-  // black,
+  bgGreen,
+  black,
   Application,
   Router,
 } from "../deps.ts";
@@ -33,6 +33,6 @@ const app = new Application<{
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-// console.log(bgGreen(black("Server started on port 8000")));
+console.log(bgGreen(black("Server started on port 8000")));
 
 await app.listen({ port: 8000 });

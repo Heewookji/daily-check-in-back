@@ -7,17 +7,17 @@ export {
 import {
   RouterContext,
   RouteParams,
-} from 'https://deno.land/x/oak/mod.ts';
+} from "https://deno.land/x/oak/mod.ts";
 export type {
   RouterContext,
   RouteParams,
 };
+export { bgGreen, black } from "https://deno.land/std/fmt/colors.ts";
 // @deno-types="https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/master/types/yup/index.d.ts"
 // import * as yup from "https://cdn.pika.dev/yup@^0.29.0";
 // export { yup };
 // import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
 // export { bcrypt };
-// export { bgGreen, black } from "https://deno.land/std/fmt/colors.ts";
 // export { Client as PostgresClient } from "https://deno.land/x/postgres/mod.ts";
 // export { ConnectionOptions } from "https://deno.land/x/postgres/connection_params.ts";
 // export {

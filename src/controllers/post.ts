@@ -101,7 +101,7 @@ import {
 //   }
 // }
 
-export async function getPosts(ctx: RouterContext<string, RouteParams<string>, Record<string, any>>) {
+export async function getPosts(ctx: RouterContext<'/posts', RouteParams<string>, Record<string, any>>) {
   try {
     const { response } = ctx;
     response.status = 201;
