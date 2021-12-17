@@ -1,8 +1,8 @@
-import { nessieConfig, ClientPostgreSQL } from "./deps.ts";
+import {nessieConfig, MysqlClient} from "./deps.ts";
 import { config } from "./src/config.ts";
 
 const configPg: nessieConfig = {
-  client: new ClientPostgreSQL("./migrations", {
+  client: new MysqlClient("./migrations", {
     ...config.dbConfig,
   }),
 };

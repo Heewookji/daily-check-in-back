@@ -13,7 +13,7 @@ export type {
   RouteParams,
 };
 export { bgGreen, black } from "https://deno.land/std/fmt/colors.ts";
-export { Client } from "https://deno.land/x/mysql/mod.ts";
+export { Client as MysqlClient } from "https://deno.land/x/mysql/mod.ts";
 import { ClientConfig } from "https://deno.land/x/mysql/mod.ts";
 export type {
   ClientConfig
