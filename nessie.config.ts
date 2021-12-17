@@ -1,10 +1,14 @@
-import {nessieConfig, MysqlClient} from "./deps.ts";
+import {NessieConfig, ClientMySQL} from "./deps.ts";
 import { config } from "./src/config.ts";
 
-const configPg: nessieConfig = {
-  client: new MysqlClient("./migrations", {
-    ...config.dbConfig,
-  }),
+
+const client = new ClientMySQL(config.dbConfig);
+
+/** This is the final config object */
+const configPg: NessieConfig = {
+    client,
+    migrationFolders: ["./db/migrations"],
+    seedFolders: ["./db/seeds"],
 };
 
 export default configPg;
