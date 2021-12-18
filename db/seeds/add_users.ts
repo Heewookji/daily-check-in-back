@@ -1,8 +1,8 @@
-import { AbstractSeed, Info, ClientMySQL } from "https://deno.land/x/nessie@2.0.4/mod.ts";
+import { AbstractSeed, Info, ClientPostgreSQL } from "../../deps.ts";
 
-export default class extends AbstractSeed<ClientMySQL> {
+export default class extends AbstractSeed<ClientPostgreSQL> {
     /** Runs on seed */
     async run(info: Info): Promise<void> {
-        await this.client.execute("INSERT INTO user VALUES (1, 'user1')");
+        await this.client.queryObject("INSERT INTO users VALUES (1, 'user1')");
     }
 }

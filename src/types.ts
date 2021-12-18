@@ -1,7 +1,8 @@
-import { ClientConfig } from "../deps.ts";
+import { PostgresOptions } from "../deps.ts";
 
 export interface Config {
-  dbConfig: ClientConfig;
+  DBConfig: PostgresOptions;
+  nessieDBConfig: any,
   jwtSecret: string;
 }
 

@@ -13,3 +13,8 @@ deno run -A --unstable https://deno.land/x/nessie/cli.ts seed
 // run the server
 deno run --allow-net --allow-env --allow-read --unstable src/index.ts
 ```
+
+```typescript
+// rollback migration
+deno run -A --unstable https://deno.land/x/nessie/cli.ts rollback
+```
