@@ -5,20 +5,14 @@ import {
   Router,
 } from "../deps.ts";
 // import { hello, signup, login, me } from "./controllers/user.ts";
-import {
-  getPosts,
-} from "./controllers/post.ts";
+import * as user from "./controllers/user.ts";
 // import { handleAuthHeader, handleErrors } from "./middlewares.ts";
 // import { IUser } from "./types.ts";
 
 const router = new Router();
 
 router
-  // .get("/", hello)
-  // .post("/signup", signup)
-  // .post("/login", login)
-  // .get("/me", me)
-  .get("/posts", getPosts)
+  .post("/user/create", user.create)
   // .post("/posts", createPost)
   // .get("/posts/:id", getPost)
   // .delete("/posts/:id", deletePost);
