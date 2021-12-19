@@ -12,6 +12,9 @@ deno run -A --unstable https://deno.land/x/nessie/cli.ts migrate
 deno run -A --unstable https://deno.land/x/nessie/cli.ts seed
 // run the server
 deno run --allow-net --allow-env --allow-read --unstable src/index.ts
+// run and watch the server (install once)
+deno install -qAf --unstable https://deno.land/x/denon/denon.ts 
+denon run --allow-net --allow-env --allow-read --unstable src/index.ts
 ```
 
 ```typescript
