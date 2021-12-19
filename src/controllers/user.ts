@@ -9,7 +9,7 @@ export async function create(ctx: RouterContext<'/user/create', RouteParams<stri
     const { response } = ctx;
     const user = await User.create({
       name: 'heewook',
-      email: 'wlgmldnr@naver.com',
+      email: `email@google.com${Math.random()}`,
     });
     response.status = 201;
     response.body = {

@@ -1,11 +1,14 @@
-// import { Context, validateJwt } from "../deps.ts";
+import {
+    Context,
+    // validateJwt
+} from "../deps.ts";
 // import { IUser } from "./types.ts";
 // import { config } from "./config.ts";
 // import { User } from "./models/user.ts";
 //
 // export async function handleAuthHeader(
 //   ctx: Context<{ user: Omit<IUser, "password"> | null }>,
-//   next: () => Promise<void>
+//   next: () => Promise<unknown>
 // ) {
 //   try {
 //     const { request, state } = ctx;
@@ -35,7 +38,7 @@
 //
 // export async function handleErrors(
 //   context: Context,
-//   next: () => Promise<void>
+//   next: () => Promise<unknown>
 // ) {
 //   try {
 //     await next();
@@ -46,3 +49,12 @@
 //     context.response.type = "json";
 //   }
 // }
+
+export async function responseLogger(
+  context: Context,
+  next: () => Promise<unknown>
+) {
+    await next();
+    const responseTime = new Date().toLocaleString();
+    console.log(`${context.request.method} ${context.request.url} - ${responseTime}`);
+}

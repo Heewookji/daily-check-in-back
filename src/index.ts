@@ -6,6 +6,7 @@ import {
 } from "../deps.ts";
 // import { hello, signup, login, me } from "./controllers/user.ts";
 import * as user from "./controllers/user.ts";
+import * as middlewares from "./middlewares.ts";
 // import { handleAuthHeader, handleErrors } from "./middlewares.ts";
 // import { IUser } from "./types.ts";
 
@@ -23,6 +24,7 @@ const app = new Application<{
 
 // app.use(handleAuthHeader);
 // app.use(handleErrors);
+app.use(middlewares.responseLogger);
 
 app.use(router.routes());
 app.use(router.allowedMethods());
