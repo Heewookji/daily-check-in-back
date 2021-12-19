@@ -4,7 +4,7 @@ import {
 } from "./deps.ts";
 import { config } from "./src/config.ts";
 
-const client = new ClientPostgreSQL(config.nessieDBConfig);
+const client = new ClientPostgreSQL(config.nessieConfig);
 
 /** This is the final config object */
 const configPg: NessieConfig = {

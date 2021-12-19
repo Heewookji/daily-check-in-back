@@ -1,10 +1,10 @@
 import "https://deno.land/x/dotenv/load.ts";
 import { Config } from "./types.ts";
-import { PostgresOptions, envConfig } from "../deps.ts";
+import { PostgresOptions, MySQLOptions, envConfig } from "../deps.ts";
 
 envConfig();
 
-const DBConfig: PostgresOptions = {
+const postgresConfig: PostgresOptions = {
   database: Deno.env.get("DB_DATABASE")!,
   host: Deno.env.get("DB_HOST")!,
   username: Deno.env.get("DB_USER")!,
@@ -12,7 +12,15 @@ const DBConfig: PostgresOptions = {
   port: +Deno.env.get("DB_PORT")!,
 };
 
-const nessieDBConfig = {
+const mysqlConfig: MySQLOptions = {
+  database: Deno.env.get("DB_DATABASE")!,
+  host: Deno.env.get("DB_HOST")!,
+  username: Deno.env.get("DB_USER")!,
+  password: Deno.env.get("DB_PASSWORD")!,
+  port: +Deno.env.get("DB_PORT")!,
+};
+
+const nessieConfig = {
   database: Deno.env.get("DB_DATABASE")!,
   hostname: Deno.env.get("DB_HOST")!,
   user: Deno.env.get("DB_USER")!,
@@ -21,7 +29,8 @@ const nessieDBConfig = {
 };
 
 export const config: Config = {
-  DBConfig,
-  nessieDBConfig,
+  postgresConfig,
+  mysqlConfig,
+  nessieConfig,
   jwtSecret: Deno.env.get("JWT_SECRET")!,
 };

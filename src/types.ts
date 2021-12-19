@@ -1,8 +1,9 @@
-import { PostgresOptions } from "../deps.ts";
+import { PostgresOptions, MySQLOptions } from "../deps.ts";
 
 export interface Config {
-  DBConfig: PostgresOptions;
-  nessieDBConfig: any,
+  postgresConfig: PostgresOptions;
+  mysqlConfig: MySQLOptions;
+  nessieConfig: any,
   jwtSecret: string;
 }
 
