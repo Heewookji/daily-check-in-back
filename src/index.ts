@@ -13,10 +13,10 @@ import * as middlewares from "./middlewares.ts";
 const router = new Router();
 
 router
-  .get("/user/create", user.create)
-  // .post("/posts", createPost)
-  // .get("/posts/:id", getPost)
-  // .delete("/posts/:id", deletePost);
+  .post("/user", user.create)
+  .get("/user/:id", user.get)
+  .patch("/user/:id", user.update)
+  .delete("/user/:id", user.remove);
 
 const app = new Application<{
   // user: Omit<IUser, "password"> | null;
