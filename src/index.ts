@@ -12,7 +12,7 @@ import * as user from "./controllers/user.ts";
 const router = new Router();
 
 router
-  .post("/user/create", user.create)
+  .get("/user/create", user.create)
   // .post("/posts", createPost)
   // .get("/posts/:id", getPost)
   // .delete("/posts/:id", deletePost);
