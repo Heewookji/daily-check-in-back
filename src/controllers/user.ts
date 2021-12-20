@@ -1,8 +1,30 @@
 import {
     RouterContext,
     RouteParams,
+    RSA,
 } from "../../deps.ts";
 import { User } from "../models/user.ts";
+
+export async function me(
+    context: RouterContext<'/user/me',
+        { id: string; } & RouteParams<string>,
+        Record<string, any>>
+) {
+  const keyString = "";
+  const key = RSA.parseKey(keyString);
+  try {
+    const { response, params } = context;
+    console.log(context);
+    // const payload = await verify('jwt', key);
+    // console.log(payload);
+    response.status = 201;
+    response.body = {
+      data: '',
+    };
+  } catch (error) {
+    throw error;
+  }
+}
 
 export async function create(
   context: RouterContext<'/user',
