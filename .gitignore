@@ -153,5 +153,6 @@ Temporary Items
 .apdisk
 
 .env
+.idea/dataSources.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/git,macos,intellij
