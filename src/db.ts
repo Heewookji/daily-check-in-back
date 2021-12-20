@@ -4,5 +4,5 @@ import { config } from "./config.ts";
 const postgresConnection = new PostgresConnector(config.postgresConfig);
 const mysqlConnection = new MySQLConnector(config.mysqlConfig);
 
-const db = new Database(postgresConnection);
+const db = new Database(mysqlConnection);
 export { Model, DataTypes, db };
