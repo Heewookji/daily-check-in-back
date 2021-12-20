@@ -29,6 +29,8 @@ app.use(middlewares.responseLogger);
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-console.log(bgGreen(black("Server started on port 8000")));
+const port = 8989;
 
-await app.listen({ port: 8000 });
+console.log(bgGreen(black(`Server started on port: ${port}`)));
+
+await app.listen({ port });
