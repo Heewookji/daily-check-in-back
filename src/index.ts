@@ -1,9 +1,4 @@
-import {
-  bgGreen,
-  black,
-  Application,
-  Router,
-} from "../deps.ts";
+import { Application, bgGreen, black, Router } from "../deps.ts";
 // import { hello, signup, login, me } from "./controllers/user.ts";
 import * as user from "./controllers/user.ts";
 import * as middlewares from "./middlewares.ts";
@@ -14,29 +9,20 @@ const router = new Router();
 
 router
   .post("/user", user.create)
+  .get("/user/me", user.me)
   .get("/user/:id", user.get)
   .patch("/user/:id", user.update)
-  .delete("/user/:id", user.remove)
-  .get("/user/me", user.me);
+  .delete("/user/:id", user.remove);
 
 const app = new Application<{
   // user: Omit<IUser, "password"> | null;
 }>();
 
 // app.use(handleAuthHeader);
-// app.use(handleErrors);
-// app.use(middlewares.responseLogger);
+app.use(middlewares.handleErrors);
+app.use(middlewares.responseLogger);
+app.use(middlewares.setResponseHeader);
 
-app.use(async (ctx, next) => {
-  const responseHeaders = ctx.response.headers;
-  responseHeaders.set("Access-Control-Allow-Origin", "*");
-  responseHeaders.set(
-      "Access-Control-Allow-Methods",
-      "OPTIONS, GET, POST, PUT, DELETE"
-  );
-  responseHeaders.set("Access-Control-Allow-Headers", "Content-Type");
-  await next();
-});
 app.use(router.routes());
 app.use(router.allowedMethods());
 

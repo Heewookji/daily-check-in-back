@@ -1,6 +1,6 @@
 import "https://deno.land/x/dotenv/load.ts";
 import { Config } from "./types.ts";
-import { PostgresOptions, MySQLOptions, envConfig } from "../deps.ts";
+import { envConfig, MySQLOptions, PostgresOptions } from "../deps.ts";
 
 envConfig();
 

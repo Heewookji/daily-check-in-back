@@ -1,25 +1,19 @@
-import {
-    RouterContext,
-    RouteParams,
-    RSA,
-} from "../../deps.ts";
+import { RouteParams, RouterContext, RSA } from "../../deps.ts";
 import { User } from "../models/user.ts";
 
 export async function me(
-    context: RouterContext<'/user/me',
-        { id: string; } & RouteParams<string>,
-        Record<string, any>>
+  context: RouterContext<"/user/me">,
+  // Record<string, any>>
 ) {
-  const keyString = "";
-  const key = RSA.parseKey(keyString);
   try {
-    const { response, params } = context;
-    console.log(context);
+    // const keyString = "";
+    // const key = RSA.parseKey(keyString);
     // const payload = await verify('jwt', key);
     // console.log(payload);
-    response.status = 201;
+    const { response, params } = context;
+    response.status = 200;
     response.body = {
-      data: '',
+      data: { "test2": "test" },
     };
   } catch (error) {
     throw error;
@@ -27,9 +21,7 @@ export async function me(
 }
 
 export async function create(
-  context: RouterContext<'/user',
-  RouteParams<string>,
-  Record<string, any>>
+  context: RouterContext<"/user", RouteParams<string>, Record<string, any>>,
 ) {
   try {
     const { response, request } = context;
@@ -45,14 +37,17 @@ export async function create(
 }
 
 export async function get(
-  context: RouterContext<'/user/:id',
-  { id: string; } & RouteParams<string>,
-  Record<string, any>>
+  context: RouterContext<
+    "/user/:id",
+    { id: string } & RouteParams<string>,
+    Record<string, any>
+  >,
 ) {
   try {
     const { response, params } = context;
     const result = await User.find(params.id);
-    response.status = 201;
+    response.status = 200;
+
     response.body = {
       data: result,
     };
@@ -62,14 +57,16 @@ export async function get(
 }
 
 export async function update(
-  context: RouterContext<'/user/:id',
-  { id: string; } & RouteParams<string>,
-  Record<string, any>>
+  context: RouterContext<
+    "/user/:id",
+    { id: string } & RouteParams<string>,
+    Record<string, any>
+  >,
 ) {
   try {
     const { response, params } = context;
-    const result = await User.where('id', params.id)
-        .update("name", "updated Name");
+    const result = await User.where("id", params.id)
+      .update("name", "updated Name");
     response.status = 201;
     response.body = {
       data: result,
@@ -80,9 +77,11 @@ export async function update(
 }
 
 export async function remove(
-  context: RouterContext<'/user/:id',
-  { id: string; } & RouteParams<string>,
-  Record<string, any>>
+  context: RouterContext<
+    "/user/:id",
+    { id: string } & RouteParams<string>,
+    Record<string, any>
+  >,
 ) {
   try {
     const { response, params } = context;

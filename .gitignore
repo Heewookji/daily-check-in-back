@@ -154,5 +154,6 @@ Temporary Items
 
 .env
 .idea/dataSources.xml
+.idea/*
 
 # End of https://www.toptal.com/developers/gitignore/api/git,macos,intellij

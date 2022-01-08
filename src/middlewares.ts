@@ -1,17 +1,17 @@
 import {
-    Context,
-    // validateJwt
+  Context,
+  // validateJwt
 } from "../deps.ts";
-// import { IUser } from "./types.ts";
-// import { config } from "./config.ts";
-// import { User } from "./models/user.ts";
-//
+// import {IUser} from "./types.ts";
+import { config } from "./config.ts";
+import { User } from "./models/user.ts";
+
 // export async function handleAuthHeader(
 //   ctx: Context<{ user: Omit<IUser, "password"> | null }>,
 //   next: () => Promise<unknown>
 // ) {
 //   try {
-//     const { request, state } = ctx;
+//     const {request, state} = ctx;
 //
 //     const jwt =
 //       request.headers.get("authorization")?.split("bearer ")?.[1] || "";
@@ -35,26 +35,44 @@ import {
 //     throw error;
 //   }
 // }
-//
-// export async function handleErrors(
-//   context: Context,
-//   next: () => Promise<unknown>
-// ) {
-//   try {
-//     await next();
-//   } catch (err) {
-//     context.response.status = err.status;
-//     const { message = "unknown error", status = 500, stack = null } = err;
-//     context.response.body = { message, status, stack };
-//     context.response.type = "json";
-//   }
-// }
+
+export async function handleErrors(
+  context: Context,
+  next: () => Promise<unknown>,
+) {
+  try {
+    await next();
+  } catch (err) {
+    context.response.status = err.status;
+    const { message = "unknown error", status = 500, stack = null } = err;
+    context.response.body = { message, status, stack };
+    context.response.type = "json";
+  }
+}
+
+export async function setResponseHeader(
+  context: Context,
+  next: () => Promise<unknown>,
+) {
+  await next();
+  const responseHeaders = context.response.headers;
+  responseHeaders.set("Access-Control-Allow-Origin", "*");
+  responseHeaders.set(
+    "Access-Control-Allow-Methods",
+    "OPTIONS, GET, POST, PUT, DELETE",
+  );
+  responseHeaders.set("Access-Control-Allow-Headers", "authorization");
+}
 
 export async function responseLogger(
   context: Context,
-  next: () => Promise<unknown>
+  next: () => Promise<unknown>,
 ) {
-    await next();
+  await next();
+  if (context.request.method !== "OPTIONS") {
     const responseTime = new Date().toLocaleString();
-    console.log(`${context.request.method} ${context.request.url} - ${responseTime}`);
+    console.log(
+      `${context.request.method} ${context.request.url} - ${responseTime}`,
+    );
+  }
 }
