@@ -1,38 +1,35 @@
-import {
-  Context,
-  // validateJwt
-} from "../deps.ts";
-// import {IUser} from "./types.ts";
+import { Context } from "../deps.ts";
 import { config } from "./config.ts";
 import { User } from "./models/user.ts";
 
 // export async function handleAuthHeader(
-//   ctx: Context<{ user: Omit<IUser, "password"> | null }>,
-//   next: () => Promise<unknown>
+//   ctx: Context<{ user: Omit<User, "password"> | null }>,
+//   next: () => Promise<unknown>,
 // ) {
 //   try {
-//     const {request, state} = ctx;
-//
-//     const jwt =
-//       request.headers.get("authorization")?.split("bearer ")?.[1] || "";
-//
-//     const validatedJwt = await validateJwt(jwt, config.jwtSecret, {
-//       isThrowing: false
-//     });
-//
-//     if (!validatedJwt) {
-//       state.user = null;
+//     const { request, state } = ctx;
+//     const authorization = request.headers.get("Authorization");
+//     if (!authorization) {
+//       ctx.response.status = 401;
+//       return;
 //     }
-//
-//     const user = await User.findOneById(validatedJwt?.payload?.id! as string);
-//     if (!user) {
-//       state.user = null;
+//     const jwt = authorization.split("bearer ")?.[1];
+//     if (!jwt) {
+//       ctx.response.status = 401;
+//       return;
 //     }
-//
-//     state.user = user;
-//     await next();
+//     // const payload = await verifyJwt(jwt);
+//     console.log("payload", payload);
+//     if (!payload) {
+//       ctx.response.status = 401;
+//       return;
+//     }
+//     const userId = payload.id as string;
+//     state.user = await User.find(userId);
 //   } catch (error) {
 //     throw error;
+//   } finally {
+//     await next();
 //   }
 // }
 

@@ -4,7 +4,7 @@
 // fill env
 cp .env.example .env
 // download & cache all deps
-deno cache ./deps.ts
+deno cache ./deps.ts --unstable
 // migrate database after fill your env file
 deno run -A --unstable https://deno.land/x/nessie/cli.ts migrate
 // seed database
