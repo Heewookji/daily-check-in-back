@@ -5,20 +5,24 @@ export class User extends Model {
   static timestamps = true;
 
   static fields = {
-    id: {
+    uid: {
       primaryKey: true,
+    },
+    id: {
       autoIncrement: true,
       length: 8,
     },
-    name: DataTypes.STRING,
+    display_name: DataTypes.STRING,
     email: {
       type: DataTypes.STRING,
       unique: true,
       allowNull: false,
       length: 50,
     },
+    photoURL: DataTypes.STRING,
+    created_at: DataTypes.TIMESTAMP,
+    updated_at: DataTypes.TIMESTAMP,
   };
 }
 
 db.link([User]);
-// await db.sync();

@@ -1,37 +1,36 @@
 import { Context } from "../deps.ts";
-import { config } from "./config.ts";
 import { User } from "./models/user.ts";
+import { verifyFirebaseJWT } from "./helpers.ts";
 
-// export async function handleAuthHeader(
-//   ctx: Context<{ user: Omit<User, "password"> | null }>,
-//   next: () => Promise<unknown>,
-// ) {
-//   try {
-//     const { request, state } = ctx;
-//     const authorization = request.headers.get("Authorization");
-//     if (!authorization) {
-//       ctx.response.status = 401;
-//       return;
-//     }
-//     const jwt = authorization.split("bearer ")?.[1];
-//     if (!jwt) {
-//       ctx.response.status = 401;
-//       return;
-//     }
-//     // const payload = await verifyJwt(jwt);
-//     console.log("payload", payload);
-//     if (!payload) {
-//       ctx.response.status = 401;
-//       return;
-//     }
-//     const userId = payload.id as string;
-//     state.user = await User.find(userId);
-//   } catch (error) {
-//     throw error;
-//   } finally {
-//     await next();
-//   }
-// }
+export async function handleAuthHeader(
+  context: Context,
+  next: () => Promise<unknown>,
+) {
+  try {
+    const { request, state } = context;
+    const authorization = request.headers.get("Authorization");
+    if (!authorization) {
+      return;
+    }
+    const jwt = authorization?.split("Bearer ")?.[1];
+    if (!jwt) {
+      return;
+    }
+    const payload = await verifyFirebaseJWT(jwt);
+    if (!payload) {
+      context.response.status = 401;
+      return;
+    }
+    const uid = payload.sub as string;
+    //todo: 없다면 새로 만들어줘야함
+    state.user = await User.find(uid);
+    console.log(state.user);
+  } catch (error) {
+    throw error;
+  } finally {
+    await next();
+  }
+}
 
 export async function handleErrors(
   context: Context,

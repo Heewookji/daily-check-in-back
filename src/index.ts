@@ -1,23 +1,20 @@
 import { Application, bgGreen, black, Router } from "../deps.ts";
 import * as user from "./controllers/user.ts";
 import * as middlewares from "./middlewares.ts";
-import * as firebaseAdmin from "./firebase.ts";
+import { ContextState } from "./types.ts";
 
-firebaseAdmin.initialize();
 const router = new Router();
 
 router
-  .get("/user/me", user.me);
-// .post("/user", user.create)
-// .get("/user/:id", user.get)
-// .patch("/user/:id", user.update)
-// .delete("/user/:id", user.remove);
+  .post("/user", user.create)
+  .get("/user/me", user.me)
+  .get("/user/:id", user.get)
+  .patch("/user/:id", user.update)
+  .delete("/user/:id", user.remove);
 
-const app = new Application<{
-  // user: Omit<IUser, "password"> | null;
-}>();
+const app = new Application<ContextState>();
 
-// app.use(middlewares.handleAuthHeader);
+app.use(middlewares.handleAuthHeader);
 app.use(middlewares.handleErrors);
 app.use(middlewares.responseLogger);
 app.use(middlewares.setResponseHeader);

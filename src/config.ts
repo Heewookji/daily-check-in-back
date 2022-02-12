@@ -1,28 +1,23 @@
 import "https://deno.land/x/dotenv/load.ts";
 import { Config, FirebaseOptions } from "./types.ts";
-import {
-  envConfig,
-  // MySQLOptions,
-  // PostgresOptions
-} from "../deps.ts";
+import { envConfig, MySQLOptions, PostgresOptions } from "../deps.ts";
 
 envConfig();
+const postgresConfig: PostgresOptions = {
+  database: Deno.env.get("DB_DATABASE")!,
+  host: Deno.env.get("DB_HOST")!,
+  username: Deno.env.get("DB_USER")!,
+  password: Deno.env.get("DB_PASSWORD")!,
+  port: +Deno.env.get("DB_PORT")!,
+};
 
-// const postgresConfig: PostgresOptions = {
-//   database: Deno.env.get("DB_DATABASE")!,
-//   host: Deno.env.get("DB_HOST")!,
-//   username: Deno.env.get("DB_USER")!,
-//   password: Deno.env.get("DB_PASSWORD")!,
-//   port: +Deno.env.get("DB_PORT")!,
-// };
-//
-// const mysqlConfig: MySQLOptions = {
-//   database: Deno.env.get("DB_DATABASE")!,
-//   host: Deno.env.get("DB_HOST")!,
-//   username: Deno.env.get("DB_USER")!,
-//   password: Deno.env.get("DB_PASSWORD")!,
-//   port: +Deno.env.get("DB_PORT")!,
-// };
+const mysqlConfig: MySQLOptions = {
+  database: Deno.env.get("DB_DATABASE")!,
+  host: Deno.env.get("DB_HOST")!,
+  username: Deno.env.get("DB_USER")!,
+  password: Deno.env.get("DB_PASSWORD")!,
+  port: +Deno.env.get("DB_PORT")!,
+};
 
 const nessieConfig = {
   database: Deno.env.get("DB_DATABASE")!,
@@ -40,12 +35,12 @@ const firebaseConfig: FirebaseOptions = {
   projectId: Deno.env.get("FIREBASE_PROJECT_ID")!,
   storageBucket: Deno.env.get("FIREBASE_STORAGE_BUCKET")!,
   databaseUrl: Deno.env.get("FIREBASE_DATABASE_URL")!,
-  serviceAccountPath: Deno.env.get("FIREBASE_SERVICE_ACCOUNT_PATH")!,
+  publicKeyUrl: Deno.env.get("FIREBASE_PUBLIC_KEY_URL")!,
 };
 
 export const config: Config = {
-  // postgresConfig,
-  // mysqlConfig,
+  postgresConfig,
+  mysqlConfig,
   nessieConfig,
   firebaseConfig,
 };

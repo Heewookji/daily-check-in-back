@@ -1,8 +1,9 @@
-// import { MySQLOptions, PostgresOptions } from "../deps.ts";
+import { MySQLOptions, PostgresOptions } from "../deps.ts";
+import { User } from "./models/user.ts";
 
 export interface Config {
-  // postgresConfig: PostgresOptions;
-  // mysqlConfig: MySQLOptions;
+  postgresConfig: PostgresOptions;
+  mysqlConfig: MySQLOptions;
   nessieConfig: any;
   firebaseConfig: FirebaseOptions;
 }
@@ -15,5 +16,9 @@ export interface FirebaseOptions {
   messagingSenderId: string;
   appId: string;
   databaseUrl: string;
-  serviceAccountPath: string;
+  publicKeyUrl: string;
+}
+
+export interface ContextState {
+  user: User | null;
 }
