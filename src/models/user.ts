@@ -7,10 +7,11 @@ export class User extends Model {
   static fields = {
     uid: {
       primaryKey: true,
+      type: DataTypes.STRING,
     },
     id: {
       autoIncrement: true,
-      length: 8,
+      type: DataTypes.BIG_INTEGER,
     },
     display_name: DataTypes.STRING,
     email: {
