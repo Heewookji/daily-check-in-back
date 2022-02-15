@@ -1,19 +1,12 @@
 import "https://deno.land/x/dotenv/load.ts";
 import { Config, FirebaseOptions } from "./types.ts";
-import { envConfig, MySQLOptions, PostgresOptions } from "../deps.ts";
+import {envConfig, MysqlConfig} from "../deps.ts";
 
 envConfig();
-const postgresConfig: PostgresOptions = {
-  database: Deno.env.get("DB_DATABASE")!,
-  host: Deno.env.get("DB_HOST")!,
-  username: Deno.env.get("DB_USER")!,
-  password: Deno.env.get("DB_PASSWORD")!,
-  port: +Deno.env.get("DB_PORT")!,
-};
 
-const mysqlConfig: MySQLOptions = {
-  database: Deno.env.get("DB_DATABASE")!,
-  host: Deno.env.get("DB_HOST")!,
+const dbConfig: MysqlConfig = {
+  db: Deno.env.get("DB_DATABASE")!,
+  hostname: Deno.env.get("DB_HOST")!,
   username: Deno.env.get("DB_USER")!,
   password: Deno.env.get("DB_PASSWORD")!,
   port: +Deno.env.get("DB_PORT")!,
@@ -39,8 +32,7 @@ const firebaseConfig: FirebaseOptions = {
 };
 
 export const config: Config = {
-  postgresConfig,
-  mysqlConfig,
+  dbConfig,
   nessieConfig,
   firebaseConfig,
 };

@@ -4,6 +4,7 @@ import {
 } from "https://deno.land/x/oak@v10.2.0/mod.ts";
 import { Info, NessieConfig } from "https://deno.land/x/nessie/mod.ts";
 import { ProtectedHeaderParameters } from "https://deno.land/x/jose/index.ts";
+import {ClientConfig as MysqlConfig } from "https://deno.land/x/mysql/mod.ts";
 
 export { config as envConfig } from "https://deno.land/x/dotenv/mod.ts";
 export {
@@ -21,33 +22,13 @@ export {
 
 export * as jose from "https://deno.land/x/jose/index.ts";
 
-// import {
-//   MySQLOptions,
-//   PostgresOptions,
-// } from "https://deno.land/x/denodb/mod.ts";
-// export {
-// Database,
-// DataTypes,
-// Model,
-// MySQLConnector,
-// PostgresConnector,
-// } from "https://deno.land/x/denodb/mod.ts";
-
-import { MySQLOptions, PostgresOptions } from "https://raw.githubusercontent.com/Heewookji/denodb/v1.0.41/mod.ts";
-export {
-  Database,
-  DataTypes,
-  Model,
-  MySQLConnector,
-  PostgresConnector,
-} from "https://raw.githubusercontent.com/Heewookji/denodb/v1.0.41/mod.ts";
+export { Client as MysqlClient } from "https://deno.land/x/mysql/mod.ts";
 
 export type {
   Info,
-  MySQLOptions,
   NessieConfig,
-  PostgresOptions,
   ProtectedHeaderParameters,
   RouteParams,
   RouterContext,
+  MysqlConfig,
 };

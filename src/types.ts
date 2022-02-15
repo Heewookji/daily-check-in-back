@@ -1,9 +1,8 @@
-import { MySQLOptions, PostgresOptions } from "../deps.ts";
+import { MysqlConfig } from "../deps.ts";
 import { User } from "./models/user.ts";
 
 export interface Config {
-  postgresConfig: PostgresOptions;
-  mysqlConfig: MySQLOptions;
+  dbConfig: MysqlConfig;
   nessieConfig: any;
   firebaseConfig: FirebaseOptions;
 }
