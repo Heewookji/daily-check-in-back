@@ -1,22 +1,13 @@
-import { DataTypes, db, Model } from "../db.ts";
+import { db } from "../db.ts";
 
-export class Comment extends Model {
+export class Comment {
   static table = "comment";
-  static timestamps = true;
 
-  static fields = {
-    uid: DataTypes.STRING,
-    id: {
-      primaryKey: true,
-      autoIncrement: true,
-      type: DataTypes.BIG_INTEGER,
-    },
-    answer_id: DataTypes.INTEGER,
-    user_id: DataTypes.INTEGER,
-    content:  DataTypes.TEXT,
-    created_at: DataTypes.TIMESTAMP,
-    updated_at: DataTypes.TIMESTAMP,
-  };
+  uid: string | undefined;
+  id: Number | undefined;
+  answer_id: Number | undefined;
+  user_id: Number | undefined;
+  content: string | undefined;
+  created_at: Date | undefined;
+  updated_at: Date | undefined;
 }
-
-db.link([Comment]);

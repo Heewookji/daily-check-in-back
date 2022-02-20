@@ -1,26 +1,17 @@
-import {  RouterContext,helpers } from "../../deps.ts";
+import { helpers, RouterContext } from "../../deps.ts";
 import { Answer } from "../models/Answer.ts";
-import {Comment} from "../models/comment.ts";
+import { Comment } from "../models/comment.ts";
 
-export const prefix = '/answer';
+export const prefix = "/answer";
 
 // todo: validate request params
 export async function list(context: RouterContext<"/answer">) {
   try {
     const { response } = context;
-    const query =  helpers.getQuery(context, { mergeParams: true });
+    const query = helpers.getQuery(context, { mergeParams: true });
     const page = parseInt(query.page!);
     const limit = parseInt(query.limit!);
-    const result = await Answer
-      .select(
-        Answer.field('content'),
-        Comment.field('content'),
-      )
-      .leftOuterJoin(Comment, Comment.field('answer_id'), Answer.field('id'))
-      .skip(page * limit).take(limit)
-      .orderBy(Answer.field('created_at'), 'desc')
-      .get();
-    console.log(result);
+    const result = null;
     response.status = 200;
     response.body = {
       data: result,
@@ -29,7 +20,6 @@ export async function list(context: RouterContext<"/answer">) {
     throw error;
   }
 }
-
 
 export async function get(context: RouterContext<"/answer/:id">) {
   // try {
@@ -58,7 +48,6 @@ export async function create(context: RouterContext<"/answer">) {
   //   throw error;
   // }
 }
-
 
 export async function update(context: RouterContext<"/answer">) {
   // try {

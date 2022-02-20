@@ -4,8 +4,6 @@ import * as answer from "./controllers/answer.ts";
 import * as middlewares from "./middlewares.ts";
 import { ContextState } from "./types.ts";
 
-
-
 const app = new Application<ContextState>();
 
 app.use(middlewares.handleAuthHeader);
@@ -23,9 +21,8 @@ console.log(bgGreen(black(`Server started on port: ${port}`)));
 
 await app.listen({ port });
 
-
-function getRouter(){
-    return new Router()
+function getRouter() {
+  return new Router()
     .get(`${user.prefix}/me`, user.me)
     .get(`${answer.prefix}`, answer.list)
     .post(`${answer.prefix}`, answer.create)
@@ -33,4 +30,3 @@ function getRouter(){
     .delete(`${answer.prefix}`, answer.remove)
     .get(`${answer.prefix}/:id`, answer.get);
 }
-

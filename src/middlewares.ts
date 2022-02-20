@@ -23,7 +23,7 @@ export async function handleAuthHeader(
     }
     const uid = payload.sub as string;
     //todo: 없다면 새로 만들어줘야함
-    state.user = await User.find(uid);
+    state.user = await User.findByUid(uid);
   } catch (error) {
     throw error;
   } finally {

@@ -1,6 +1,6 @@
-import {  RouterContext } from "../../deps.ts";
+import { RouterContext } from "../../deps.ts";
 
-export const prefix = '/user';
+export const prefix = "/user";
 
 export async function me(context: RouterContext<"/user/me">) {
   try {

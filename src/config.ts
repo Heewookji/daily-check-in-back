@@ -1,6 +1,6 @@
 import "https://deno.land/x/dotenv/load.ts";
 import { Config, FirebaseOptions } from "./types.ts";
-import {envConfig, MysqlConfig} from "../deps.ts";
+import { envConfig, MysqlConfig } from "../deps.ts";
 
 envConfig();
 

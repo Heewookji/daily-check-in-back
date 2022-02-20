@@ -1,6 +1,9 @@
-import {MysqlClient} from "../deps.ts";
+import { MysqlClient } from "../deps.ts";
 import { config } from "./config.ts";
 
-const dbClient = new MysqlClient().connect(config.dbConfig);
+const db = await new MysqlClient().connect(config.dbConfig) as MysqlClient;
 
-export { dbClient };
+class Model {
+}
+
+export { db, Model };

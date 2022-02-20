@@ -1,22 +1,39 @@
-import { DataTypes, db, Model } from "../db.ts";
+import { MysqlClient } from "../../deps.ts";
+import { db, Model } from "../db.ts";
 
-export class Answer extends Model {
+export class Answer implements Model {
   static table = "answer";
-  static timestamps = true;
+  uid: string;
+  id: Number;
+  emotion_id: Number;
+  user_id: Number;
+  content: string;
+  created_at: Date;
+  updated_at: Date;
 
-  static fields = {
-    uid: DataTypes.STRING,
-    id: {
-      primaryKey: true,
-      autoIncrement: true,
-      type: DataTypes.BIG_INTEGER,
-    },
-    emotion_id: DataTypes.INTEGER,
-    user_id: DataTypes.INTEGER,
-    content:  DataTypes.TEXT,
-    created_at: DataTypes.TIMESTAMP,
-    updated_at: DataTypes.TIMESTAMP,
-  };
+  constructor(param: {
+    uid: string;
+    id: Number;
+    emotion_id: Number;
+    user_id: Number;
+    content: string;
+    created_at: Date;
+    updated_at: Date;
+  }) {
+    this.uid = param.uid;
+    this.id = param.id;
+    this.emotion_id = param.emotion_id;
+    this.user_id = param.user_id;
+    this.content = param.content;
+    this.created_at = param.created_at;
+    this.updated_at = param.updated_at;
+  }
+
+  fromMap(map: any): Answer {
+    return new Answer(map);
+  }
+
+  static select() {
+    return db.query("");
+  }
 }
-
-db.link([Answer]);
